@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+use http\Client\Request;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
+    const HTTP_PREFIX = '';
     /**
      * This namespace is applied to your controller routes.
      *
@@ -44,7 +46,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->mapApiRoutes();
 
-        $this->mapWebRoutes();
+       // $this->mapWebRoutes();
 
         //
     }
@@ -72,7 +74,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
-        Route::prefix('api')
+
+        Route::prefix(self::HTTP_PREFIX)
             ->middleware('api')
             ->namespace($this->namespace)
             ->group(base_path('routes/api.php'));
